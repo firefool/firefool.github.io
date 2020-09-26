@@ -1,5 +1,11 @@
 body{
     background-color: whitesmoke;
+    color: #333;
+
+}
+
+h{
+    color: #333;
 }
 
 h1{
@@ -11,81 +17,8 @@ h2{
     margin-bottom: 30px;
 }
 
-button{
-
-    color: #333333;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: lightblue;
-    border: 5px solid lightblue;
-    border-radius: 25px;
-    
-}
-
-button:hover{
-    background-color: skyblue;
-    border: 5px solid skyblue;
-}
-
-#header{
-    color: #333;
+h3{
     font-family: "Cherry Swash";
-    padding: 20px 15%;
-    border-bottom: 3px solid lightblue;
-}
-
-#parent{
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-}
-
-#content{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    color: #333;
-}
-
-#containerDiv{
-    display: grid;
-    grid-template-columns: 1fr minmax(150px, 25%) ;
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
-
-}
-
-#containerWorkDiv{
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
-    padding-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#descriptionDiv{
-    padding-top: 20px;
-}
-
-#sidebarDiv{
-    padding: 20px;
-    border-left: 3px solid lightblue;
-}
-
-.workClass{
-    flex: 1 1 250px; 
-    margin: 5px;
-    border-radius: 25px;
-    border: 3px solid lightblue;
-    padding: 5px;
-}
-
-.line{
-    display: flex;
-    width: 100%;
-    height: 1px;
-    background-color: rgb(182, 205, 255);
 }
 
 img{
@@ -102,4 +35,100 @@ a{
 
 a:hover{
     color: skyblue;
+}
+
+#header{
+    
+    color: #333;
+    font-family: "Cherry Swash";
+    padding: 20px 15%;
+    border-bottom: 3px solid lightblue;
+}
+
+#parent{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+#content{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#containerDiv{
+    display: grid;
+    grid-template-columns: 1fr minmax(150px, 25%) ;
+}
+
+#containerWorkDiv{
+
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#descriptionDiv{
+    padding-top: 20px;
+}
+
+#sidebarDiv{
+    padding: 20px;
+    border-left: 3px solid lightblue;
+}
+
+#containerProjectDiv {
+    padding-top: 20px;
+    height: auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+.visual {
+    height: 100px;
+    width: 100%;
+    background-color: teal;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+  }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: space-between;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+  }
+
+.card:hover{
+    background-color: lightblue;
+}
+
+.workClass{
+    flex: 1 1 250px; 
+    margin: 5px;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+    padding: 5px;
+}
+
+.menu{
+
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 5px solid lightblue;
+    border-radius: 25px;
+    
+}
+
+.menu:hover{
+    background-color: skyblue;
+    border: 5px solid skyblue;
 }
