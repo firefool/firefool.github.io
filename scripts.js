@@ -1,27 +1,39 @@
-let loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " + 
-"labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " + 
-"aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " + 
-"eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
+// Hämtar den div som vi lägger in allt vårat innehåll i genom DOM
 let contentDiv = document.getElementById("content");
 
+// Kallar på funktionen som skapar våran grundläggande vy
 createDescriptionPage();
 
+// Här är menyknapparna, dessa kallar på våra "create" funktioner för att skriva ut rätt vy till användaren
+let homeButton = document.getElementById("homeButton");
+homeButton.addEventListener("click", function buttonClick(){
+    // Nollställer först vyn innan vi skapar sidan som ska visas upp
+    contentDiv.textContent = "";
+    createDescriptionPage();
+});
 
-function addText(_type, _text, _element, _id)
+let workButton = document.getElementById("workButton");
+workButton.addEventListener("click", function buttonClick(){
+    contentDiv.textContent = "";
+    createProjectsPage();
+});
+
+// Här är våra funktioner för att skapa DOM element, funktionerna tar emot typen av html som ska skapas, eventuell text, id och klass vid behov och ett target på vart vi ska lägga
+// till vårat nya element
+function addText(_type, _text, _target, _id)
 {
     let text = document.createElement(_type);
     text.innerHTML = _text;
     text.id = _id;
-    document.getElementById(_element).appendChild(text);
+    document.getElementById(_target).appendChild(text);
 
 }
 
-function addImage(_img, _element)
+function addImage(_img, _target)
 {
     let img = new Image();
-    img.src = "./" + _img + ".jpg";
-    document.getElementById(_element).appendChild(img);
+    img.src = "./" + _img;
+    document.getElementById(_target).appendChild(img);
 }
 
 function createDiv(_div, _target, _class)
@@ -42,45 +54,56 @@ function createBtn(_id, _target, _class)
     document.getElementById(_target).appendChild(btn);
 }
 
+function addLink(_text, _link, _target, _class)
+{
+    let linkText = document.createTextNode(_text);
+    let link = document.createElement("a");
+    link.appendChild(linkText);
+    link.href = _link;
+    link.class = _class;
+    _target.appendChild(link);
+}
+
+
+// Här kommer våra "create" funktioner, dessa skapar de olika vyerna som ska visas på sidan genom att använda våra DOM funktioner.
 function createDescriptionPage()
 {
-    /*let container = document.createElement("div");
-    container.id = "containerDiv";
-    document.getElementById("content").appendChild(container);*/
-    /*
-    let newDiv = document.createElement("div");
-    newDiv.id = "descriptionDiv";
-    container.appendChild(newDiv);*/
-  /*   newDiv = document.createElement("div");
-    newDiv.id = "sidebarDiv";
-    container.appendChild(newDiv);*/   
-    
+    let cvText = "<h4>Hello and welcome to my portfolio page!</h4>" +
+    "I'm a web developer, programmer, game and web designer. I have many years programming experience" +
+    "mainly within school and university projects. I have studied Game Design and Programming at Uppsala University, Campus Gotland" +
+    "for three years and I am currently studying Web Development at Jönköping University, Campus Värnamo. " +
+    "I have a broad set of skills for design and development that I am currently sharpening into a proffesional skillset for web development. <br />" + 
+    "Check out my sample projects and feel free to contact me if you have any questions of inqueries! <br /><br />" +
+
+    "<b>Technical Skills</b><br>" +
+    "<i>C#, C++, Java, HTML/CSS, Javascript, PHP <br />" +
+    "Unity3D, GameMaker Studio, Adobe Photoshop</i><br /><br />" +
+
+    "<b>Education</b><br />" +
+    "Thoren Innovation School, Uddevalla - 2009-2012<br />" +
+    "(f.d. Portalens Gymnasium Uddevalla)<br />" +
+    "<i>IT-education with focus on programming.</i><br /><br />" + 
+
+    "Uppsala Universitet, Campus Gotland, Visby - 2012-2016<br />" +
+    "<i>Game Design and Programming.</i><br /><br />" + 
+
+    "Jönköpings Universitet, Campus Värnamo, Remote education 2020-<br />" +
+    "<i>Web Development.</i>";
+
     createDiv("containerDiv", "content");
     createDiv("descriptionDiv", "containerDiv");
-    addText("p", loremIpsum, "descriptionDiv");
+    addText("p", cvText, "descriptionDiv");
     createDiv("sidebarDiv", "containerDiv");
     let description = document.getElementById("descriptionDiv");
     let sidebar = document.getElementById("sidebarDiv");
 
-    addImage("jonas", "sidebarDiv");
-
-    addText("p", "<b>Github: </b>", "sidebarDiv");
-    let linkText = document.createTextNode("https://github.com/firefool/");
-    let link = document.createElement("a");
-    link.appendChild(linkText);
-    link.href = "https://github.com/firefool/";
-    sidebar.appendChild(link);
-
+    addImage("jonas.jpg", "sidebarDiv");
+    addText("p", "Github: ", "sidebarDiv");
+    addLink("github.com/firefool/", "https://github.com/firefool/", sidebar);
     sidebar.appendChild(document.createElement("br"));
     sidebar.appendChild(document.createElement("br"));
-
-    addText("p","<b>Email Adress: </b>", "sidebarDiv");
-    linkText = document.createTextNode("Jonazyzermans@gmail.com");
-    link = document.createElement("a");
-    link.appendChild(linkText);
-    link.href = "mailto:Jonazyzermans@gmail.com";
-    sidebar.appendChild(link);
-
+    addText("p","Email Adress: ", "sidebarDiv");
+    addLink("Jonazyzermans@gmail.com", "mailto:Jonazyzermans@gmail.com", sidebar);
 }
 
 function createProjectsPage()
@@ -89,8 +112,9 @@ function createProjectsPage()
     
     createBtn("work1", "containerProjectDiv", "card");
     addText("h3", "School Projects", "work1");
-    addText("p", "This is some sample text", "work1");
-    createDiv("visual1", "work1", "visual");
+    addText("p", "Here you can explore some samples from my school projects.", "work1");
+    createDiv("projectImage1", "work1", "projectImage");
+    addImage("schoolimg.png", "projectImage1");
     let work1 = document.getElementById("work1");
     work1.addEventListener("click", function buttonClick(){
         contentDiv.textContent = "";
@@ -99,66 +123,52 @@ function createProjectsPage()
 
     createBtn("work2", "containerProjectDiv", "card");
     addText("h3", "Work Projects", "work2");
-    addText("p", "This is some sample text", "work2");
-    createDiv("visual2", "work2", "visual");
+    addText("p", "Here is some of the proffesional website work I have done!", "work2");
+    createDiv("projectImage2", "work2", "projectImage");
+    addImage("workimg.png", "projectImage2");
     let work2 = document.getElementById("work2");
     work2.addEventListener("click", function buttonClick(){
         contentDiv.textContent = "";
         createWorkPage();
     });
 
+    // Skapade en tredje kategori för personliga projekt, behåller den här för när jag har något att lägga in!
+    /*
     createBtn("work3", "containerProjectDiv", "card");
     addText("h3", "Personal Projects", "work3");
-    addText("p", "This is some sample text", "work3");
-    createDiv("visual3", "work3", "visual");
+    addText("p", "Here are some of my personal projects!", "work3");
+    createDiv("projectImage3", "work3", "projectImage");
     let work3 = document.getElementById("work3");
     work3.addEventListener("click", function buttonClick(){
         contentDiv.textContent = "";
         createPersonalPage();
     });
-
-
-
+*/
 }
 
 function createSchoolPage()
 {
     createDiv("containerWorkDiv", "content");
 
-    createWorkExampleText("Skoluppgift #1", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Skoluppgift #2", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Skoluppgift #3", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Skoluppgift #4", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Skoluppgift #1", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Skoluppgift #2", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Skoluppgift #3", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Skoluppgift #4", loremIpsum, "www.google.com", "containerWorkDiv");
+    createWorkExampleText("Inloggningssida", "A simple login page made for a school assignment.", "Inloggnings-uppgift", "https://firefool.github.io/inloggning-uppgift_JonasYzermansFalkheden/", "containerWorkDiv");
 }
 
 function createWorkPage()
 {
     createDiv("containerWorkDiv", "content");
 
-    createWorkExampleText("Arbetsexempel #1", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Arbetsexempel #2", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Arbetsexempel #3", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Arbetsexempel #4", loremIpsum, "www.google.com", "containerWorkDiv");
-   
+    createWorkExampleText("Uddenskulptur 2020", "Website for the art exhibition Uddenskulptur 2020 located in Hunnebostrand, Bohuslän. Created with Squarespace.", "Uddenskulptur.se", "https://uddenskulptur2020.squarespace.com/", "containerWorkDiv");
+    createWorkExampleText("Åsa Herrgård", "Website for the artist and sculptor Åsa Herrgård.", "WIP", "", "containerWorkDiv");
 }
 
 function createPersonalPage()
 {
     createDiv("containerWorkDiv", "content");
-
-    createWorkExampleText("Projekt #1", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Projekt #2", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Projekt #3", loremIpsum, "www.google.com", "containerWorkDiv");
-    createWorkExampleText("Projekt #4", loremIpsum, "www.google.com", "containerWorkDiv");
-
+    createWorkExampleText("", "There's nothing here right now, check back later!", "", "", "containerWorkDiv");
 }
 
 
-function createWorkExampleText(_title, _text, _link, _element)
+function createWorkExampleText(_title, _text, _linktext, _link, _element)
 {
     let newDiv = document.createElement("div");
     newDiv.className = "workClass";
@@ -167,12 +177,8 @@ function createWorkExampleText(_title, _text, _link, _element)
     title.innerHTML = _title;
     newDiv.appendChild(title);
     
-    let link = document.createElement("a");
-    let linkText = document.createTextNode(_link);
-    link.appendChild(linkText);
-    link.href = "https://" + _link;
-    newDiv.appendChild(link);
-
+    addLink(_linktext, _link, newDiv);
+ 
     let text = document.createElement("p");
     text.innerHTML = _text;
     newDiv.appendChild(text);
@@ -180,15 +186,5 @@ function createWorkExampleText(_title, _text, _link, _element)
     document.getElementById(_element).appendChild(newDiv);
 }
 
-let homeButton = document.getElementById("homeButton");
-homeButton.addEventListener("click", function buttonClick(){
-    contentDiv.textContent = "";
-    createDescriptionPage();
-});
 
-let workButton = document.getElementById("workButton");
-workButton.addEventListener("click", function buttonClick(){
-    contentDiv.textContent = "";
-    createProjectsPage();
-});
 
