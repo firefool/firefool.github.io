@@ -1,0 +1,145 @@
+body{
+    background-color: whitesmoke;
+    color: #333;
+}
+
+h{
+    color: #333;
+}
+
+h1{
+    font-size: 36px;
+}
+
+h2{
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+h3{
+    font-family: "Cherry Swash";
+}
+
+img{
+    border-radius: 25px;
+}
+
+a{
+    font-size: 16px;
+    font-weight: bold;
+    color:midnightblue;
+}
+
+a:hover{
+    color: skyblue;
+}
+
+#header{   
+    color: #333;
+    font-family: "Cherry Swash";
+    padding: 20px 15%;
+    border-bottom: 3px solid lightblue;
+}
+
+#content{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#containerDiv{
+    display: grid;
+    grid-template-columns: 1fr minmax(100px, 20%) ;
+}
+
+#descriptionDiv{
+    padding-top: 20px;
+    padding-right: 20px;
+    line-height: 18pt;
+}
+
+#sidebarDiv{
+    padding: 20px;
+    border-left: 3px solid lightblue;
+    font-weight: bold;
+}
+
+#sidebarDiv img{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#containerWorkDiv{
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.workClass{
+    flex: 1 1 250px; 
+    margin: 5px;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+    padding: 15px;
+}
+
+#containerProjectDiv {
+    padding-top: 20px;
+
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.projectImage {
+    border-radius: 25px;
+  }
+
+  .projectImage img{
+    width: 100%;    
+  }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+  }
+
+.card:hover{
+    background-color: lightblue;
+}
+
+
+.menu{
+
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 5px solid lightblue;
+    border-radius: 25px;
+    
+}
+
+.menu:hover{
+    background-color: skyblue;
+    border: 5px solid skyblue;
+}
+
+@media only screen and (max-width: 600px) {
+    #content{
+        width: 100%;
+        margin-left: 0%;
+        margin-right:0%;
+    }
+    #header{  
+        padding: 20px 0px;
+    }
+  }
+
